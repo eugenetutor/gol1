@@ -2,20 +2,31 @@ package main
 
 import (
 	"fmt"
-	"unsafe"
+	"math"
 )
 
 func main() {
-	var a int8 = -128
-	fmt.Println("int8: ", a, "size of:", unsafe.Sizeof(a), "byte")
-	var b int16 = 32767
-	fmt.Println("int16: ", b, "size of:", unsafe.Sizeof(b), "byte")
-	var c int64 = 999999999999999999
-	fmt.Println("int64: ", c, "size of:", unsafe.Sizeof(c), "byte")
-	
-	var d float32 = 3.14
-	fmt.Println("float32: ", d, "size of:", unsafe.Sizeof(d), "byte")
+	a := 10
+	b := 3
 
-	var str string = "Hello worldefefefefsdvd wefefefefasdfasfsa "
-	fmt.Println("string: ", str, "size of:", unsafe.Sizeof(str), "byte")
+	sum := a + b
+	fmt.Printf("%d + %d = %d\n", a, b, sum)
+
+	dif := a - b
+	fmt.Printf("%d - %d = %d\n", a, b, dif)
+
+	prod := a * b
+	fmt.Printf("%d * %d = %d\n", a, b, prod)
+
+	quo := a / b
+	fmt.Printf("%d / %d = %d\n", a, b, quo)
+
+	rem := a % b
+	fmt.Printf("%d %% %d = %d\n", a, b, rem)
+
+	floatQuo := float64(a) / float64(b)
+	fmt.Printf("%d / %d = %.1f\n", a, b, floatQuo)
+
+	fmt.Print(math.Pow(float64(a), 2))
+
 }
