@@ -3,14 +3,15 @@ package main
 import "fmt"
 
 func main(){
+	const Pi = 3.14159
+	const MaxUsers = 1000
 
-	value := 10
-	if true {
-		value := 20 //нова змінна
-		fmt.Println(value)
-	}
+	const (
+		StatusOK = 200
+		StatusNotFound = 404
+		StatusInternalErro = 500
+	)
 
-	fmt.Println(value)
-
-
+	StatusOK = 300//error
+	fmt.Println(StatusOK)
 }
