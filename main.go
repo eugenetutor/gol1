@@ -1,14 +1,16 @@
 package main
 
 import (
-	"log"
-	"os"
+	"fmt"
+	"time"
 )
 
 func main() {
-	f, err := os.Open("file.txt")
-	if err != nil {
-		log.Fatal(err)
+	currentHour := time.Now().Hour()
+	fmt.Println(currentHour)
+	if currentHour >= 6 && currentHour < 22{
+		fmt.Println("Зараз день")
+	}else{
+		fmt.Println("Зараз ніч")
 	}
-	defer f.Close()
 }
