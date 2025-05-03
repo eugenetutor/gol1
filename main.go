@@ -5,11 +5,9 @@ import (
 )
 
 func main() {
-	a, b := 10, 20
-	fmt.Println(a == b)
-	fmt.Println(a != b)
-	fmt.Println(a < b)
-	fmt.Println(a > b)
-	fmt.Println(a <= b)
-	fmt.Println(a >= b)
+	age := 16
+	isAdult := age >= 18
+	hasPermission := IsLoggedIn && hasRole
+	canAccess := isAdmin || hasPermission
+	isRestricted := !canAccess
 }
