@@ -6,15 +6,28 @@ import (
 )
 
 func main() {
-	// if змінна := вираз; умова{
-	// 	 істина
+	// switch вираз {
+	// case знач1:
+	// 		//код1
+	// case знач2:
+	// 		//код2
+	// case знач3:
+	// 		//код3
+	// default:
+	// 		//код, якщо нічого не підішло
 	// }
 
-	if today := time.Now().Weekday(); today == time.Saturday || today == time.Sunday {
-		fmt.Println("Це вихідний")
-	} else if today == time.Friday{
-		fmt.Println("Пʼятниця! Скоро вихідні")
-	}else{
-		fmt.Println("Робочий день :((", today)
+	rating := 4
+	switch rating{
+	case 5:
+		fmt.Println("Дякуємо щиро за ваг відгук!")
+	case 4:
+		fmt.Println("Дякуємо за високу оцінку!")
+	case 3:
+		fmt.Println("Дякуємо! Ми працюємо над покращенням!")
+	case 1,2:
+		fmt.Println("Нам шкода, що ви залишилися незадоволеними")
+	default:
+		fmt.Println("Некоректна оцінка")
 	}
 }
