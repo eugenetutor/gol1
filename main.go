@@ -9,11 +9,10 @@ func main() {
 }
 
 func demoDefer(){
-	//LIFO - (Last in, First out)
-	defer fmt.Println("Last output")
-	defer fmt.Println("Second output")
-
-	fmt.Println("First output")
+	x := 10
+	defer fmt.Println("X value: ", x)
+	x = 20
+	fmt.Println("X changed value: ", x)
 }
 
 
