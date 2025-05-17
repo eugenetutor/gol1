@@ -5,35 +5,15 @@ import (
 )
 
 func main() {
-	rectangleArea := calcArea(5.0, 3.0)
-	fmt.Println("Rectangle Area: ", rectangleArea)
-
-	checkValue(5)
-	demoShadowing()
+	fmt.Printf("String %d %d \n", 2, 4)
+	fmt.Println(sum(1,2))
+	fmt.Println(sum(1,2,3,3,4,4,5,5,5,6,6,7,7,7,8,8,8,98,9,8,7,5,4,3,2,4,5,6,7,7,6,5,4,3,3,4,5,56,6,7))
 }
 
-func calcArea(w, h float64) float64 {
-	area := w * h
-	return area
-}
-
-func checkValue(n int) {
-	if n > 0 {
-		message := "Lion"
-		fmt.Println(message)
+func sum(numbers ...int) int {
+	total := 0
+	for _, num := range numbers{
+		total += num
 	}
-	// fmt.Println(message)
+	return total
 }
-
-func demoShadowing(){
-	x := 10
-	fmt.Println("initial x: ",x)
-	if true{
-		x := 20
-		fmt.Println(&x)
-		fmt.Println("x in if block: ",x)
-	}
-	fmt.Println("x after if block: ",x)
-	fmt.Println(&x)
-}
-
