@@ -5,19 +5,17 @@ import (
 )
 
 func main() {
-	//слайси - це динамічний масив, який може змінювати свій розмір під час виконання програми
-	//var імʼя []тип
-	// var numbers []int
+	names := []string{"Ann", "Boghad"}
+	names = append(names, "Vova")
+	fmt.Println(names)
+	set2Names := []string{"Vova", "Kolya", "Leo"}
+	names = append(names, set2Names...)
+	fmt.Println(names)
 
-	arr := [5]int{1,2,3,4,5}
+	names = removeElement(names, 2)
+	fmt.Println(names)
+}
 
-	slice1 := arr[1:4]
-	fmt.Println(slice1)
-
-	slice2 := arr[:3]
-	slice3 := arr[2:]
-	slice4 := arr[:]
-	fmt.Println(slice2)
-	fmt.Println(slice3)
-	fmt.Println(slice4)
+func removeElement(slice []string, index int) []string{
+	return append(slice[:index], slice[index+1:]...)
 }
