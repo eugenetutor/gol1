@@ -5,20 +5,31 @@ import (
 )
 
 func main() {
-	names := make([]string, 3, 5)// ["", "", "", "",""]
-	names[0] = "Ann"
-	names[1] = "Vova"
-	names[2] = "Oleg"
-	fmt.Println(names)
-	fmt.Println("Length", len(names))
-	fmt.Println("Capacity", cap(names))
+	//мапа - це невпорядкована колекція пар ключ-значень, де ключі УНІКАЛЬНІ
 
-	s := make([]int, 0, 3)
-	fmt.Printf("Slice: %v, Length: %d, Capacity: %d\n", s, len(s), cap(s))
+	// var name map[KeyType]ValueType
+	// var scores map[string]int
 
-	for i := 1; i <= 7; i++ {
-		s = append(s, i)
-		fmt.Printf("Slice: %v, Length: %d, Capacity: %d\n", s, len(s), cap(s))
+	userAges := map[string]int{
+		"Ann": 25,
+		"Bohdan": 30,
+		"Vika": 22,
 	}
+	fmt.Println(userAges)
+	contacts := make(map[string]string)
+
+	contacts["Mike"] = "+380505005050"
+	contacts["Natalie"] = "+380666006060"
+	fmt.Println(contacts)
+
+	mikePhone, exists := contacts["Leo"]
+	if exists {
+		fmt.Println(mikePhone)
+	} else {
+		fmt.Println("nothing")
+	}
+	
+	delete(contacts, "Mike")
+	fmt.Println(contacts)
 }
 
