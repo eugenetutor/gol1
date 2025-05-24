@@ -5,17 +5,20 @@ import (
 )
 
 func main() {
-	names := []string{"Ann", "Boghad"}
-	names = append(names, "Vova")
+	names := make([]string, 3, 5)// ["", "", "", "",""]
+	names[0] = "Ann"
+	names[1] = "Vova"
+	names[2] = "Oleg"
 	fmt.Println(names)
-	set2Names := []string{"Vova", "Kolya", "Leo"}
-	names = append(names, set2Names...)
-	fmt.Println(names)
+	fmt.Println("Length", len(names))
+	fmt.Println("Capacity", cap(names))
 
-	names = removeElement(names, 2)
-	fmt.Println(names)
+	s := make([]int, 0, 3)
+	fmt.Printf("Slice: %v, Length: %d, Capacity: %d\n", s, len(s), cap(s))
+
+	for i := 1; i <= 7; i++ {
+		s = append(s, i)
+		fmt.Printf("Slice: %v, Length: %d, Capacity: %d\n", s, len(s), cap(s))
+	}
 }
 
-func removeElement(slice []string, index int) []string{
-	return append(slice[:index], slice[index+1:]...)
-}
