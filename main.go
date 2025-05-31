@@ -14,9 +14,17 @@ type Student struct{
 }
 
 func main() {
-	a := Student{ Name: "Ann", Age: 25}
-	b := &a//b- вказівник на а
-	b.Name = "Bob"
-	fmt.Println(a.Name)
-	fmt.Println(b.Name)
+	var x int = 42
+	var p *int = &x
+	fmt.Println(*p)
+	*p = 20
+	fmt.Println(*p)
+
+	x, y := 10, 20
+	swap(&x, &y)
+	fmt.Printf("x=%d, y=%d\n", x,y)
+}
+
+func swap(a,b *int){
+	*a, *b = *b, *a
 }
