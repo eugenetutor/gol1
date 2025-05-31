@@ -15,7 +15,7 @@ type Student struct{
 
 func main() {
 	a := Student{ Name: "Ann", Age: 25}
-	b := a
+	b := &a//b- вказівник на а
 	b.Name = "Bob"
 	fmt.Println(a.Name)
 	fmt.Println(b.Name)
