@@ -4,27 +4,55 @@ import (
 	"fmt"
 )
 
-//структури - це визначений користувачем тип, який дозволяє групувати, комбінувати елементи різних типів в один тип. 
-//struct is value type. NOT REFERENCE TYPE
-type Student struct{
+//Інтерфейси - це колекція сигнатур  методів. Це контракт, який визначає, які методи повинен мати тип, але НЕ РЕАЛІЗУЄ ЇХ
+// type НазваІнтерфейсу interface{
+// 		НазваМетоду(параметр) повертає
+// 		ІншийМетоду(параметр) повертає
+// }
+
+//Duck typing - "якщо щось ходить як качка і крякає як качка, то це качка" 
+
+type Animal interface{
+	MakeSound() string
+}
+
+type Dog struct{
 	Name string
-	Age int 
-	Group string
-	Avarage float64
+	Breed string
+}
+
+type Bird struct{
+	Name string
+	Species string
+}
+
+func (d Dog) MakeSound() string{
+	return "woof!"
+}
+
+func (d Bird) MakeSound() string{
+	return "tweet!"
+}
+
+// func PrintDogSound(d Dog){
+// 	fmt.Println(d.MakeSound())
+// }
+
+// func PrintBirdSound(b Bird){
+// 	fmt.Println(b.MakeSound())
+// }
+
+func printAnimalSound(a Animal){
+	fmt.Println(a.MakeSound())
 }
 
 func main() {
-	var x int = 42
-	var p *int = &x
-	fmt.Println(*p)
-	*p = 20
-	fmt.Println(*p)
+	bird := Bird{Name: "Kesha", Species: "Parrot"}
+	dog := Dog{Name: "Boris", Breed: "Golden Retruever"}
 
-	x, y := 10, 20
-	swap(&x, &y)
-	fmt.Printf("x=%d, y=%d\n", x,y)
-}
+	// PrintBirdSound(bird)
+	// PrintDogSound(dog)
 
-func swap(a,b *int){
-	*a, *b = *b, *a
+	printAnimalSound(bird)
+	printAnimalSound(dog)
 }
