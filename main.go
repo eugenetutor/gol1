@@ -10,62 +10,52 @@ import (
 // 		ІншийМетоду(параметр) повертає
 // }
 
-//Duck typing - "якщо щось ходить як качка і крякає як качка, то це качка" 
+//Duck typing - "якщо щось ходить як качка і крякає як качка, то це качка"
 
-type Drawable interface{
-	Draw()
+type MessageSender interface{
+	Send(message string)
 }
 
-type Resizable interface{
-	Resize(factor float64)
+type EmailSender struct{}
+func (e *EmailSender) Send(message string){
+	fmt.Printf("EMail: %s \n", message)
 }
 
-type GraphicElement interface{
-	Drawable
-	Resizable
-	GetInfo() string
+type SMSSender struct{}
+func (e *SMSSender) Send(message string){
+	fmt.Printf("SMS: %s \n", message)
 }
 
-type Square struct{
-	Size float64
+type TelegramSender struct{}
+func (e *TelegramSender) Send(message string){
+	fmt.Printf("Telegram: %s \n", message)
 }
 
-func (s *Square) Draw(){
-	fmt.Printf("Drawing square with size %.1f \n", s.Size)
+type NotificationService struct{
+	sender MessageSender
 }
 
-func (s *Square) Resize(factor float64){
-	s.Size *= factor
-	fmt.Printf("Drawing square with size %.1f \n", s.Size)
+func (n *NotificationService) ChangeSender(newSender  MessageSender){
+	n.sender = newSender
 }
 
-func (s Square) GetInfo() string{
-	return fmt.Sprintf("Square: size=%.1f", s.Size)
-}
-
-func ProcessGraphic(g GraphicElement){
-	fmt.Println(g.GetInfo())
-	g.Draw()
-	g.Resize(1.5)
-	g.Draw()
+func (n *NotificationService) SendNotification(msg string){
+	n.sender.Send(msg)
 }
 
 func main(){
-	square := &Square{Size: 10}
-	ProcessGraphic(square)
+	email := &EmailSender{}
+	sms := &SMSSender{}
+	telegram := &TelegramSender{}
 
-	PrintAnything(42)
-	PrintAnything("Hello")
-	PrintAnything(true)
-	PrintAnything([]int{1,2,3})
+	service := &NotificationService{sender: email}
+	service.SendNotification("привіт чеерез email")
+
+	service.ChangeSender(sms)
+	service.SendNotification("привіт чеерез sms")
+
+	service.ChangeSender(telegram)
+	service.SendNotification("привіт чеерез telegram")
 }
 
 
-func PrintAnything(value interface{}){
-	fmt.Printf("Value: %v, Type: %T \n", value, value)
-}
-
-
-type UserService struct{
-	db Database
-}
