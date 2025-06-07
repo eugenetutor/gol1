@@ -12,47 +12,54 @@ import (
 
 //Duck typing - "якщо щось ходить як качка і крякає як качка, то це качка" 
 
-type Animal interface{
-	MakeSound() string
+type MusicInstrument interface{
+	playMusic()
+	tuneInstrument()
 }
 
-type Dog struct{
-	Name string
-	Breed string
+type Piano struct{}
+
+func (p Piano) playMusic(){
+	fmt.Println("Дін-дінь-дон")
 }
 
-type Bird struct{
-	Name string
-	Species string
+func (p Piano) tuneInstrument(){
+	fmt.Println("Налаштовую клавіши")
 }
 
-func (d Dog) MakeSound() string{
-	return "woof!"
+type Guitar struct{}
+
+func (p Guitar) playMusic(){
+	fmt.Println("бринь-бринь")
 }
 
-func (d Bird) MakeSound() string{
-	return "tweet!"
+func (p Guitar) tuneInstrument(){
+	fmt.Println("Підкручую струни")
 }
 
-// func PrintDogSound(d Dog){
-// 	fmt.Println(d.MakeSound())
-// }
+type Drums struct{}
 
-// func PrintBirdSound(b Bird){
-// 	fmt.Println(b.MakeSound())
-// }
-
-func printAnimalSound(a Animal){
-	fmt.Println(a.MakeSound())
+func (p Drums) playMusic(){
+	fmt.Println("бум-бум-бум")
 }
 
-func main() {
-	bird := Bird{Name: "Kesha", Species: "Parrot"}
-	dog := Dog{Name: "Boris", Breed: "Golden Retruever"}
+func (p Drums) tuneInstrument(){
+	fmt.Println("підтягую мембрани")
+}
 
-	// PrintBirdSound(bird)
-	// PrintDogSound(dog)
+func PlaySong(i MusicInstrument){
+	fmt.Println("Готується до виступу...")
+	i.tuneInstrument()
+	fmt.Println("починаємо грати...")
+	i.playMusic()
+	fmt.Println("браво!")
+}
 
-	printAnimalSound(bird)
-	printAnimalSound(dog)
+func main(){
+	piano := Piano{}
+	guitar := Guitar{}
+	drums := Drums{}
+	PlaySong(piano)
+	PlaySong(guitar)
+	PlaySong(drums)
 }
