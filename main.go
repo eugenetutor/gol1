@@ -12,54 +12,60 @@ import (
 
 //Duck typing - "якщо щось ходить як качка і крякає як качка, то це качка" 
 
-type MusicInstrument interface{
-	playMusic()
-	tuneInstrument()
+type Drawable interface{
+	Draw()
 }
 
-type Piano struct{}
-
-func (p Piano) playMusic(){
-	fmt.Println("Дін-дінь-дон")
+type Resizable interface{
+	Resize(factor float64)
 }
 
-func (p Piano) tuneInstrument(){
-	fmt.Println("Налаштовую клавіши")
+type GraphicElement interface{
+	Drawable
+	Resizable
+	GetInfo() string
 }
 
-type Guitar struct{}
-
-func (p Guitar) playMusic(){
-	fmt.Println("бринь-бринь")
+type Square struct{
+	Size float64
 }
 
-func (p Guitar) tuneInstrument(){
-	fmt.Println("Підкручую струни")
+func (s *Square) Draw(){
+	fmt.Printf("Drawing square with size %.1f \n", s.Size)
 }
 
-type Drums struct{}
-
-func (p Drums) playMusic(){
-	fmt.Println("бум-бум-бум")
+func (s *Square) Resize(factor float64){
+	s.Size *= factor
+	fmt.Printf("Drawing square with size %.1f \n", s.Size)
 }
 
-func (p Drums) tuneInstrument(){
-	fmt.Println("підтягую мембрани")
+func (s Square) GetInfo() string{
+	return fmt.Sprintf("Square: size=%.1f", s.Size)
 }
 
-func PlaySong(i MusicInstrument){
-	fmt.Println("Готується до виступу...")
-	i.tuneInstrument()
-	fmt.Println("починаємо грати...")
-	i.playMusic()
-	fmt.Println("браво!")
+func ProcessGraphic(g GraphicElement){
+	fmt.Println(g.GetInfo())
+	g.Draw()
+	g.Resize(1.5)
+	g.Draw()
 }
 
 func main(){
-	piano := Piano{}
-	guitar := Guitar{}
-	drums := Drums{}
-	PlaySong(piano)
-	PlaySong(guitar)
-	PlaySong(drums)
+	square := &Square{Size: 10}
+	ProcessGraphic(square)
+
+	PrintAnything(42)
+	PrintAnything("Hello")
+	PrintAnything(true)
+	PrintAnything([]int{1,2,3})
+}
+
+
+func PrintAnything(value interface{}){
+	fmt.Printf("Value: %v, Type: %T \n", value, value)
+}
+
+
+type UserService struct{
+	db Database
 }
